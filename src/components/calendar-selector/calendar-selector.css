@@ -1,0 +1,7 @@
+.nav-arrow {
+  width: 13px;
+}
+
+.nav-arrow.left {
+  transform: scaleX(-1);
+}
