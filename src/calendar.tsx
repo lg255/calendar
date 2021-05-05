@@ -1,45 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './calendar.css';
 import CalendarSelector from './components/calendar-selector/calendar-selector';
 import Day from './components/day/day';
 import { auth, provider } from './Firebase';
+import moment from 'moment';
+import DateActionsModal from './components/date-actions/date-actions-modal/date-actions-modal';
+import CalendarContext from './context/calendar-context';
+
+export const NAV_NEXT_MONTH = 'next';
+export const NAV_PREV_MONTH = 'prev';
+export const NAV_TODAY = 'today';
 
 function Calendar() {
   const [selectedMonth, setSelectedMonth] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState<Date | null>();
+  const { showModal } = useContext(CalendarContext);
+
   const currentDate = new Date();
 
   const getDaysOfMonth = (date: Date) => {
-    const daysOfMonth = new Date(
+    const lastDayOfMonth = new Date(
       date.getFullYear(),
       date.getMonth() + 1,
       0
     ).getDate();
 
-    const daysOfMonthAsArray: Date[] = [];
+    const daysOfMonth: Date[] = [];
 
-    for (let i = 1; i <= daysOfMonth; i++) {
+    for (let i = 1; i <= lastDayOfMonth; i++) {
       const day = new Date(date);
       day.setDate(i);
-      daysOfMonthAsArray.push(day);
+      daysOfMonth.push(day);
     }
 
-    return daysOfMonthAsArray;
+    return daysOfMonth;
   };
 
-  const navigateMonth = (nextOrPrev: 'next' | 'prev' | 'today') => {
+  const navigateMonth = (nextOrPrev: string) => {
     const nextMonth = new Date(selectedMonth);
 
     switch (nextOrPrev) {
-      case 'next':
+      case NAV_NEXT_MONTH:
         nextMonth.setMonth(selectedMonth.getMonth() + 1);
         break;
-      case 'prev':
+      case NAV_PREV_MONTH:
         nextMonth.setMonth(selectedMonth.getMonth() - 1);
         break;
-      case 'today':
+      case NAV_TODAY:
         setSelectedMonth(currentDate);
         setSelectedDay(currentDate);
+        return;
+      default:
         return;
     }
 
@@ -47,19 +58,16 @@ function Calendar() {
   };
 
   const isToday = (day: Date) => {
-    return currentDate.toLocaleDateString() === day.toLocaleDateString();
+    return moment(currentDate).isSame(day, 'day');
   };
 
   const isDaySelected = (date: Date) => {
-    return (
-      selectedDay != null &&
-      selectedDay.toLocaleDateString() === date.toLocaleDateString()
-    );
+    return selectedDay != null && moment(selectedDay).isSame(date, 'day');
   };
 
   const selectDayHandler = (date: Date) => {
     setSelectedDay((prevDay) => {
-      if (prevDay?.toLocaleDateString() === date.toLocaleDateString()) {
+      if (moment(prevDay).isSame(date, 'day')) {
         return null;
       }
       return date;
@@ -98,6 +106,7 @@ function Calendar() {
           ))}
         </div>
       </div>
+      <DateActionsModal visible={showModal} selectedDay={selectedDay} />
     </React.Fragment>
   );
 }
