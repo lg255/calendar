@@ -42,7 +42,7 @@ const Day: React.FunctionComponent<DayProps> = (props) => {
       <div className="appointments">
         {appointments.map((appointment, index) => {
           if (moment(appointment.date).isSame(date, 'day')) {
-            return <div key={appointment.id} className="appointment"></div>;
+            return <div key={index} className="appointment"></div>;
           }
           return <span key={index}></span>;
         })}
