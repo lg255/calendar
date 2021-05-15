@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import CalendarContext from '../../context/calendar-context';
-import DateActions from '../date-actions/date-actions';
+import ViewAppointmentsButton from '../date-actions/view-appointments-button';
 import moment from 'moment';
 import './day.css';
 
@@ -51,7 +51,7 @@ const Day: React.FunctionComponent<DayProps> = (props) => {
         <div className="day-number">{date.getDate()}</div>
         <div className="day-name">{getDayName()}</div>
       </div>
-      {isSelected ? <DateActions /> : ''}
+      {isSelected ? <ViewAppointmentsButton /> : ''}
     </div>
   );
 };

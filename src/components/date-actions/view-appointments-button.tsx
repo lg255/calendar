@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 
-import './date-actions.css';
+import './view-appointments-button.css';
 import EditIcon from '../../svg-icons/edit-icon';
 import CalendarContext from '../../context/calendar-context';
 
-const DateActions: React.FunctionComponent<any> = (props) => {
+const ViewAppointmentsButton: React.FunctionComponent<any> = (props) => {
   const { setShowModal } = useContext(CalendarContext);
 
   return (
@@ -20,4 +20,4 @@ const DateActions: React.FunctionComponent<any> = (props) => {
   );
 };
 
-export default DateActions;
+export default ViewAppointmentsButton;
