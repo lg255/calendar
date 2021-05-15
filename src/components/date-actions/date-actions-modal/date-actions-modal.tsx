@@ -5,10 +5,14 @@ import './date-actions-modal.css';
 
 const DateActionsModal: React.FunctionComponent<{
   visible: boolean;
-  selectedDay: Date | null | undefined;
+  selectedDay: Date;
 }> = (props) => {
   const { visible, selectedDay } = props;
-  const { setShowModal } = useContext(CalendarContext);
+  const { setShowModal, appointments } = useContext(CalendarContext);
+
+  const appointmentsForCurrentDay = appointments.filter((appointment) => {
+    return moment(appointment.date).isSame(selectedDay, 'day');
+  });
 
   return (
     <>
@@ -26,6 +30,18 @@ const DateActionsModal: React.FunctionComponent<{
         ></div>
         <div className="modal-content">
           <h2>{moment(selectedDay).format('dddd, DD.MMMM.YYYY')}</h2>
+          {appointmentsForCurrentDay.length > 0 ? (
+            <ul>
+              {appointmentsForCurrentDay.map((appointment, index) => (
+                <li key={index}>
+                  {appointment.description},{' '}
+                  {appointment.date.toLocaleDateString()}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            ''
+          )}
           <div className="modal-closer" onClick={(e) => setShowModal(false)}>
             X
           </div>

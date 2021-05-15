@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './calendar-selector.css';
 import NavigationArrow from '../../svg-icons/navigation-arrow';
 import moment from 'moment';
 import { NAV_NEXT_MONTH, NAV_PREV_MONTH, NAV_TODAY } from '../../calendar';
+import CalendarContext from '../../context/calendar-context';
 
-interface SelectorProps {
-  selectedMonth: Date;
-  navigateMonth: (target: string) => void;
-}
+const CalendarSelector: React.FunctionComponent = (props) => {
+  const { selectedMonth, setSelectedMonth, setSelectedDay } =
+    useContext(CalendarContext);
 
-const CalendarSelector: React.FunctionComponent<SelectorProps> = (props) => {
-  const { selectedMonth, navigateMonth } = props;
+  const navigateMonth = (nextOrPrev: string) => {
+    const nextMonth = new Date(selectedMonth);
+
+    switch (nextOrPrev) {
+      case NAV_NEXT_MONTH:
+        nextMonth.setMonth(selectedMonth.getMonth() + 1);
+        break;
+      case NAV_PREV_MONTH:
+        nextMonth.setMonth(selectedMonth.getMonth() - 1);
+        break;
+      case NAV_TODAY:
+        setSelectedMonth(new Date());
+        setSelectedDay(new Date());
+        return;
+      default:
+        return;
+    }
+
+    setSelectedMonth(nextMonth);
+  };
 
   return (
     <React.Fragment>

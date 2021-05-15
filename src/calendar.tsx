@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './calendar.css';
 import CalendarSelector from './components/calendar-selector/calendar-selector';
 import Day from './components/day/day';
@@ -6,17 +6,28 @@ import { auth, provider } from './Firebase';
 import moment from 'moment';
 import DateActionsModal from './components/date-actions/date-actions-modal/date-actions-modal';
 import CalendarContext from './context/calendar-context';
+import AddAppointment from './add-appointment';
 
 export const NAV_NEXT_MONTH = 'next';
 export const NAV_PREV_MONTH = 'prev';
 export const NAV_TODAY = 'today';
 
 function Calendar() {
-  const [selectedMonth, setSelectedMonth] = useState(new Date());
-  const [selectedDay, setSelectedDay] = useState<Date | null>();
+  const { selectedDay, setSelectedDay } = useContext(CalendarContext);
+  const { selectedMonth } = useContext(CalendarContext);
+  const { setAppointments } = useContext(CalendarContext);
   const { showModal } = useContext(CalendarContext);
 
-  const currentDate = new Date();
+  useEffect(() => {
+    setAppointments([
+      {
+        description: 'Test',
+        date: new Date(),
+        id: 1,
+        type: 'reminder',
+      },
+    ]);
+  }, [setAppointments]);
 
   const getDaysOfMonth = (date: Date) => {
     const lastDayOfMonth = new Date(
@@ -36,31 +47,6 @@ function Calendar() {
     return daysOfMonth;
   };
 
-  const navigateMonth = (nextOrPrev: string) => {
-    const nextMonth = new Date(selectedMonth);
-
-    switch (nextOrPrev) {
-      case NAV_NEXT_MONTH:
-        nextMonth.setMonth(selectedMonth.getMonth() + 1);
-        break;
-      case NAV_PREV_MONTH:
-        nextMonth.setMonth(selectedMonth.getMonth() - 1);
-        break;
-      case NAV_TODAY:
-        setSelectedMonth(currentDate);
-        setSelectedDay(currentDate);
-        return;
-      default:
-        return;
-    }
-
-    setSelectedMonth(nextMonth);
-  };
-
-  const isToday = (day: Date) => {
-    return moment(currentDate).isSame(day, 'day');
-  };
-
   const isDaySelected = (date: Date) => {
     return selectedDay != null && moment(selectedDay).isSame(date, 'day');
   };
@@ -68,7 +54,7 @@ function Calendar() {
   const selectDayHandler = (date: Date) => {
     setSelectedDay((prevDay) => {
       if (moment(prevDay).isSame(date, 'day')) {
-        return null;
+        return prevDay;
       }
       return date;
     });
@@ -89,17 +75,13 @@ function Calendar() {
       <h1>Kalender</h1>
       <div className="content-container">
         <div className="selector-container">
-          <CalendarSelector
-            selectedMonth={selectedMonth}
-            navigateMonth={navigateMonth}
-          />
+          <CalendarSelector />
         </div>
         <div className="calendar-container">
           {getDaysOfMonth(selectedMonth).map((date, index) => (
             <Day
               key={index}
               date={date}
-              activeDay={isToday(date)}
               selectDayHanlder={selectDayHandler}
               isSelected={isDaySelected(date)}
             />
@@ -107,6 +89,7 @@ function Calendar() {
         </div>
       </div>
       <DateActionsModal visible={showModal} selectedDay={selectedDay} />
+      <AddAppointment />
     </React.Fragment>
   );
 }
