@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import './calendar-selector.css';
 import NavigationArrow from '../../svg-icons/navigation-arrow';
 import moment from 'moment';
 import { NAV_NEXT_MONTH, NAV_PREV_MONTH, NAV_TODAY } from '../../calendar';

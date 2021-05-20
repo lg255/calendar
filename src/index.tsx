@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Calendar from './calendar';
 import CalendarProvider from './context/calendar-provider';
 import moment from 'moment';
-import './index.css';
 
 moment.locale('de-AT', {
   weekdays: [

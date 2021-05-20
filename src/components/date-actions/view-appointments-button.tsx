@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-
-import './view-appointments-button.css';
 import EditIcon from '../../svg-icons/edit-icon';
 import CalendarContext from '../../context/calendar-context';
 
@@ -9,7 +7,7 @@ const ViewAppointmentsButton: React.FunctionComponent<any> = (props) => {
 
   return (
     <div
-      className="date-actions"
+      className="view-appointments-button"
       onClick={(e) => {
         e.stopPropagation();
         setShowModal(true);

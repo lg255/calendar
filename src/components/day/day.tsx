@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import CalendarContext from '../../context/calendar-context';
 import ViewAppointmentsButton from '../date-actions/view-appointments-button';
 import moment from 'moment';
-import './day.css';
 
 interface DayProps {
   date: Date;
@@ -32,7 +31,7 @@ const Day: React.FunctionComponent<DayProps> = (props) => {
       styleClasses.push('selected');
     }
     if (isToday()) {
-      styleClasses.push('active');
+      styleClasses.push('today');
     }
     return styleClasses.join(' ');
   };

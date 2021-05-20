@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import CalendarContext from '../../../context/calendar-context';
 import moment from 'moment';
-import './date-actions-modal.css';
 
 const DateActionsModal: React.FunctionComponent<{
   visible: boolean;

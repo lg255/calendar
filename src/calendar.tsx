@@ -13,9 +13,8 @@ export const NAV_PREV_MONTH = 'prev';
 export const NAV_TODAY = 'today';
 
 function Calendar() {
-  const { selectedDay, setSelectedDay } = useContext(CalendarContext);
-  const { selectedMonth } = useContext(CalendarContext);
-  const { showModal } = useContext(CalendarContext);
+  const { selectedDay, setSelectedDay, selectedMonth, showModal } =
+    useContext(CalendarContext);
 
   const getDaysOfMonth = (date: Date) => {
     const lastDayOfMonth = new Date(

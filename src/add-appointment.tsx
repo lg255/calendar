@@ -1,5 +1,4 @@
 import React from 'react';
-import './add-appointment.css';
 
 const AddAppointment: React.FunctionComponent<any> = (props) => {
   return (
