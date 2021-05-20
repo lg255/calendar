@@ -3,7 +3,6 @@ import './calendar.css';
 import CalendarSelector from './components/calendar-selector/calendar-selector';
 import Day from './components/day/day';
 import moment from 'moment';
-import DateActionsModal from './components/date-actions/date-actions-modal/date-actions-modal';
 import CalendarContext from './context/calendar-context';
 import AddAppointment from './components/add-appointment';
 import Header from './components/header/header';
@@ -13,7 +12,7 @@ export const NAV_PREV_MONTH = 'prev';
 export const NAV_TODAY = 'today';
 
 function Calendar() {
-  const { selectedDay, setSelectedDay, selectedMonth, showModal } =
+  const { selectedDay, setSelectedDay, selectedMonth } =
     useContext(CalendarContext);
 
   const getDaysOfMonth = (date: Date) => {
@@ -66,7 +65,6 @@ function Calendar() {
           ))}
         </div>
       </div>
-      <DateActionsModal visible={showModal} selectedDay={selectedDay} />
       <AddAppointment />
     </React.Fragment>
   );

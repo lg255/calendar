@@ -126,7 +126,13 @@ body {
 }
 
 .modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: opacity 0.2s linear;
+  z-index: 20;
+  cursor: initial;
+  user-select: text;
 }
 
 .modal-bg {
@@ -141,8 +147,8 @@ body {
   background-color: #fff;
   border-radius: 5px;
   margin: auto;
-  height: 500px;
-  transform: translateY(calc(50% - 100px));
+  min-height: 500px;
+  position: relative;
 }
 
 .modal-closer {
@@ -175,6 +181,7 @@ body {
   display: flex;
   text-align: center;
   cursor: pointer;
+  z-index: 10;
 }
 
 .add-appointment-button {
@@ -203,6 +210,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #eeee;
+  background-color: white;
+  padding: 5px;
+  z-index: 5;
 }
 
 .header-container .login-button {

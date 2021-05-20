@@ -8,8 +8,6 @@ export interface User {
 }
 
 export interface CalendarContextValue {
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   selectedMonth: Date;
   setSelectedMonth: React.Dispatch<React.SetStateAction<Date>>;
   selectedDay: Date;

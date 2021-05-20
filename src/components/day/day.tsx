@@ -55,7 +55,11 @@ const Day: React.FunctionComponent<DayProps> = (props) => {
         <div className="day-number">{date.getDate()}</div>
         <div className="day-name">{getDayName()}</div>
       </div>
-      {isSelected ? <ViewAppointmentsButton /> : ''}
+      {isSelected ? (
+        <ViewAppointmentsButton canOpenAppointmentsModal={isSelected} />
+      ) : (
+        ''
+      )}
     </div>
   );
 };
