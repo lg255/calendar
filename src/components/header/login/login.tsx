@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Appointment } from '../../appointment';
-import CalendarContext from '../../context/calendar-context';
-import { auth, firestore, provider } from '../../Firebase';
+import CalendarContext from '../../../context/calendar-context';
+import { auth, firestore, provider } from '../../../Firebase';
 
 const Login: React.FunctionComponent<any> = () => {
   const { currentUser, setCurrentUser, setAppointments } =
@@ -46,6 +46,7 @@ const Login: React.FunctionComponent<any> = () => {
         setCurrentUser({
           displayName: user.displayName,
           userId: user.uid,
+          photo: user.photoURL,
         });
       } else {
         setCurrentUser(null);
@@ -55,11 +56,11 @@ const Login: React.FunctionComponent<any> = () => {
   }, [setAppointments, setCurrentUser]);
 
   return currentUser ? (
-    <div className="button" onClick={() => logOut()}>
+    <div className="button login-button" onClick={() => logOut()}>
       Logout
     </div>
   ) : (
-    <div className="button" onClick={() => logIn()}>
+    <div className="button login-button" onClick={() => logIn()}>
       Login
     </div>
   );

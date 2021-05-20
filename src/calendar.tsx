@@ -5,8 +5,8 @@ import Day from './components/day/day';
 import moment from 'moment';
 import DateActionsModal from './components/date-actions/date-actions-modal/date-actions-modal';
 import CalendarContext from './context/calendar-context';
-import AddAppointment from './add-appointment';
-import Login from './components/login/login';
+import AddAppointment from './components/add-appointment';
+import Header from './components/header/header';
 
 export const NAV_NEXT_MONTH = 'next';
 export const NAV_PREV_MONTH = 'prev';
@@ -49,7 +49,7 @@ function Calendar() {
 
   return (
     <React.Fragment>
-      <Login />
+      <Header />
       <h1>Kalender</h1>
       <div className="content-container">
         <div className="selector-container">

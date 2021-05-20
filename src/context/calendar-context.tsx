@@ -1,8 +1,9 @@
 import React from 'react';
-import { Appointment } from './../appointment';
+import { Appointment } from '../components/appointment';
 
 export interface User {
   displayName?: string | null;
+  photo?: string | null;
   userId?: string;
 }
 

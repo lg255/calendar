@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Appointment } from '../appointment';
+import { Appointment } from '../components/appointment';
 import CalendarContext, { User } from './calendar-context';
 
 const CalendarProvider: React.FunctionComponent<any> = (props) => {
