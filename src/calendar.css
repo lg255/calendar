@@ -4,6 +4,10 @@
   --appointment-indicator-size: 20px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 10px 30px;
@@ -130,9 +134,7 @@ body {
   justify-content: center;
   align-items: center;
   transition: opacity 0.2s linear;
-  z-index: 20;
-  cursor: initial;
-  user-select: text;
+  z-index: 10;
 }
 
 .modal-bg {
@@ -163,7 +165,7 @@ body {
 }
 
 .nav-arrow {
-  width: 13px;
+  width: 37px;
 }
 
 .nav-arrow.left {
@@ -181,7 +183,6 @@ body {
   display: flex;
   text-align: center;
   cursor: pointer;
-  z-index: 10;
 }
 
 .add-appointment-button {

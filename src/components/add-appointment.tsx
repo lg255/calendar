@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import AddAppointmentForm from './add-appointment-form';
-import Modal from './modal/modal';
+import CalendarContext from './../context/calendar-context';
 
 const AddAppointment: React.FunctionComponent<any> = (props) => {
-  const [showModal, setShowModal] = useState(false);
+  const { setModalOptions } = useContext(CalendarContext);
 
   return (
     <div
       className="add-appointment"
       onClick={(e) => {
-        setShowModal(true);
+        setModalOptions({
+          open: true,
+          content: <AddAppointmentForm />,
+        });
       }}
     >
       <div className="add-appointment-button">+</div>
-      <Modal visible={showModal} setVisible={setShowModal}>
-        <AddAppointmentForm />
-      </Modal>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Appointment } from '../components/appointment';
+import { ModalOptions } from '../components/modal/modal-options';
 
 export interface User {
   displayName?: string | null;
@@ -16,6 +17,8 @@ export interface CalendarContextValue {
   setAppointments: React.Dispatch<React.SetStateAction<Appointment[]>>;
   currentUser: User | null;
   setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
+  modalOptions: ModalOptions;
+  setModalOptions: React.Dispatch<React.SetStateAction<ModalOptions>>;
 }
 
 const CalendarContext = React.createContext<CalendarContextValue>(undefined!);

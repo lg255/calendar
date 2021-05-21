@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Appointment } from '../components/appointment';
+import { ModalOptions } from '../components/modal/modal-options';
 import CalendarContext, { User } from './calendar-context';
 
 const CalendarProvider: React.FunctionComponent<any> = (props) => {
@@ -7,6 +8,9 @@ const CalendarProvider: React.FunctionComponent<any> = (props) => {
   const [selectedDay, setSelectedDay] = useState<Date>(new Date());
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [modalOptions, setModalOptions] = useState<ModalOptions>({
+    open: false,
+  });
 
   const contextValue = {
     selectedMonth,
@@ -17,6 +21,8 @@ const CalendarProvider: React.FunctionComponent<any> = (props) => {
     setAppointments,
     currentUser,
     setCurrentUser,
+    modalOptions,
+    setModalOptions,
   };
 
   return (

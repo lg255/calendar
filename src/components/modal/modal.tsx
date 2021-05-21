@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CalendarContext from './../../context/calendar-context';
 
-const Modal: React.FunctionComponent<{
-  visible: boolean;
-  setVisible: Function;
-}> = (props) => {
-  const { visible, setVisible } = props;
+const Modal: React.FunctionComponent = (props) => {
+  const { modalOptions, setModalOptions } = useContext(CalendarContext);
 
   const closeModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
-    setVisible(false);
+    setModalOptions({ ...modalOptions, open: false });
   };
 
   return (
@@ -16,17 +14,17 @@ const Modal: React.FunctionComponent<{
       <div
         className="modal-container"
         style={{
-          visibility: visible ? 'visible' : 'hidden',
-          opacity: visible ? 1 : 0,
+          visibility: modalOptions.open ? 'visible' : 'hidden',
+          opacity: modalOptions.open ? 1 : 0,
         }}
       >
         <div
           className="modal-bg"
-          style={{ opacity: visible ? 0.8 : 0 }}
+          style={{ opacity: modalOptions.open ? 0.8 : 0 }}
           onClick={(e) => closeModal(e)}
         ></div>
         <div className="modal-content">
-          {props.children}
+          {modalOptions.content}
           <div className="modal-closer" onClick={(e) => closeModal(e)}>
             X
           </div>
