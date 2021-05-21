@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import EditIcon from '../../svg-icons/edit-icon';
 import CalendarContext from '../../context/calendar-context';
 import ViewAppointments from './view-appointments/view-appointments';
+import moment from 'moment';
 
 const ViewAppointmentsButton: React.FunctionComponent<{
   canOpenAppointmentsModal: boolean;
@@ -18,6 +19,9 @@ const ViewAppointmentsButton: React.FunctionComponent<{
           setModalOptions({
             open: true,
             content: <ViewAppointments selectedDay={selectedDay} />,
+            title: `Termine am ${moment(selectedDay).format(
+              'dddd, DD.MMMM.YYYY'
+            )}`,
           });
         }
       }}

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
+import CalendarContext from '../../context/calendar-context';
 import AddAppointmentForm from './add-appointment-form';
-import CalendarContext from './../context/calendar-context';
 
 const AddAppointment: React.FunctionComponent<any> = (props) => {
   const { setModalOptions } = useContext(CalendarContext);
@@ -12,6 +12,7 @@ const AddAppointment: React.FunctionComponent<any> = (props) => {
         setModalOptions({
           open: true,
           content: <AddAppointmentForm />,
+          title: 'Neuen Termin hinzufügen',
         });
       }}
     >

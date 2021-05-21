@@ -14,7 +14,6 @@ const ViewAppointments: React.FunctionComponent<{
 
   return (
     <>
-      <h2>{moment(selectedDay).format('dddd, DD.MMMM.YYYY')}</h2>
       {appointmentsForCurrentDay.length > 0 ? (
         <ul>
           {appointmentsForCurrentDay.map((appointment, index) => (

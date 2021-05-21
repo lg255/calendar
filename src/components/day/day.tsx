@@ -5,13 +5,12 @@ import moment from 'moment';
 
 interface DayProps {
   date: Date;
-  selectDayHanlder: (date: Date) => void;
   isSelected: boolean;
 }
 
 const Day: React.FunctionComponent<DayProps> = (props) => {
-  const { date, selectDayHanlder, isSelected } = props;
-  const { appointments } = useContext(CalendarContext);
+  const { date, isSelected } = props;
+  const { appointments, setSelectedDay } = useContext(CalendarContext);
 
   const isToday = () => {
     return moment(new Date()).isSame(date, 'day');
@@ -19,10 +18,6 @@ const Day: React.FunctionComponent<DayProps> = (props) => {
 
   const getDayName = () => {
     return date.toLocaleString('de-AT', { weekday: 'long' });
-  };
-
-  const dateSelection = () => {
-    selectDayHanlder(date);
   };
 
   const getStyleClasses = () => {
@@ -36,8 +31,17 @@ const Day: React.FunctionComponent<DayProps> = (props) => {
     return styleClasses.join(' ');
   };
 
+  const selectDayHandler = () => {
+    setSelectedDay((prevDay) => {
+      if (moment(prevDay).isSame(date, 'day')) {
+        return prevDay;
+      }
+      return date;
+    });
+  };
+
   return (
-    <div className={getStyleClasses()} onClick={() => dateSelection()}>
+    <div className={getStyleClasses()} onClick={() => selectDayHandler()}>
       <div className="appointments">
         {appointments.map((appointment, index) => {
           if (moment(appointment.date).isSame(date, 'day')) {

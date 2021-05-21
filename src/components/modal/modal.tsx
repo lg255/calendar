@@ -6,7 +6,7 @@ const Modal: React.FunctionComponent = (props) => {
 
   const closeModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
-    setModalOptions({ ...modalOptions, open: false });
+    setModalOptions({ ...modalOptions, open: false, content: null });
   };
 
   return (
@@ -24,6 +24,9 @@ const Modal: React.FunctionComponent = (props) => {
           onClick={(e) => closeModal(e)}
         ></div>
         <div className="modal-content">
+          {modalOptions.title && (
+            <div className="modal-title">{modalOptions.title}</div>
+          )}
           {modalOptions.content}
           <div className="modal-closer" onClick={(e) => closeModal(e)}>
             X

@@ -4,16 +4,15 @@ import CalendarSelector from './components/calendar-selector/calendar-selector';
 import Day from './components/day/day';
 import moment from 'moment';
 import CalendarContext from './context/calendar-context';
-import AddAppointment from './components/add-appointment';
 import Header from './components/header/header';
+import AddAppointment from './components/add-appointment/add-appointment';
 
 export const NAV_NEXT_MONTH = 'next';
 export const NAV_PREV_MONTH = 'prev';
 export const NAV_TODAY = 'today';
 
 function Calendar() {
-  const { selectedDay, setSelectedDay, selectedMonth } =
-    useContext(CalendarContext);
+  const { selectedDay, selectedMonth } = useContext(CalendarContext);
 
   const getDaysOfMonth = (date: Date) => {
     const lastDayOfMonth = new Date(
@@ -37,15 +36,6 @@ function Calendar() {
     return selectedDay != null && moment(selectedDay).isSame(date, 'day');
   };
 
-  const selectDayHandler = (date: Date) => {
-    setSelectedDay((prevDay) => {
-      if (moment(prevDay).isSame(date, 'day')) {
-        return prevDay;
-      }
-      return date;
-    });
-  };
-
   return (
     <React.Fragment>
       <Header />
@@ -56,12 +46,7 @@ function Calendar() {
         </div>
         <div className="calendar-container">
           {getDaysOfMonth(selectedMonth).map((date, index) => (
-            <Day
-              key={index}
-              date={date}
-              selectDayHanlder={selectDayHandler}
-              isSelected={isDaySelected(date)}
-            />
+            <Day key={index} date={date} isSelected={isDaySelected(date)} />
           ))}
         </div>
       </div>
