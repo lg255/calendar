@@ -240,6 +240,27 @@ body {
   background-size: 60px;
 }
 
+.row {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.form-label {
+  width: 100px;
+}
+
+.form-input input {
+  width: 100%;
+}
+
+.form-error {
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
 @media screen and (max-width: 570px) {
   :root {
     --day-cirlce-size: 80px;
