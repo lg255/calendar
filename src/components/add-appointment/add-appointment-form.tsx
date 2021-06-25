@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { firestore } from '../../Firebase';
-import CalendarContext from './../../context/calendar-context';
+import { UserContext } from '../../context/user-provider';
 
 interface AppointmentFormValues {
   description: string;
@@ -11,7 +11,7 @@ interface AppointmentFormValues {
 }
 
 const AddAppointmentForm: React.FunctionComponent = () => {
-  const { currentUser } = useContext(CalendarContext);
+  const { currentUser } = useContext(UserContext);
 
   const saveAppointment = (values: AppointmentFormValues) => {
     firestore.collection('Appointments').add({

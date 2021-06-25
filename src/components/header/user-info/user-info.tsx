@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import CalendarContext from './../../../context/calendar-context';
+import { UserContext } from '../../../context/user-provider';
 
 const UserInfo: React.FunctionComponent = () => {
-  const { currentUser } = useContext(CalendarContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <div className="user-info">

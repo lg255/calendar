@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import NavigationArrow from '../../svg-icons/navigation-arrow';
 import moment from 'moment';
 import { NAV_NEXT_MONTH, NAV_PREV_MONTH, NAV_TODAY } from '../../calendar';
-import CalendarContext from '../../context/calendar-context';
+import { CalendarContext } from '../../context/calendar-provider';
 
 const CalendarSelector: React.FunctionComponent = (props) => {
   const { selectedMonth, setSelectedMonth, setSelectedDay } =

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import CalendarContext from '../../context/calendar-context';
 import ViewAppointmentsButton from '../date-actions/view-appointments-button';
 import moment from 'moment';
+import { CalendarContext } from '../../context/calendar-provider';
 
 interface DayProps {
   date: Date;

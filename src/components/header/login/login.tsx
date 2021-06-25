@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { Appointment } from '../../appointment';
-import CalendarContext from '../../../context/calendar-context';
 import { auth, firestore, provider } from '../../../Firebase';
+import { UserContext } from '../../../context/user-provider';
+import { CalendarContext } from '../../../context/calendar-provider';
 
 const Login: React.FunctionComponent<any> = () => {
-  const { currentUser, setCurrentUser, setAppointments } =
-    useContext(CalendarContext);
+  const { setAppointments } = useContext(CalendarContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const logIn = () => {
     auth.signInWithPopup(provider).catch(() => {

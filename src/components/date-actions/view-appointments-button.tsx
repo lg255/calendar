@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import EditIcon from '../../svg-icons/edit-icon';
-import CalendarContext from '../../context/calendar-context';
 import ViewAppointments from './view-appointments/view-appointments';
 import moment from 'moment';
+import { CalendarContext } from '../../context/calendar-provider';
 
 const ViewAppointmentsButton: React.FunctionComponent<{
   canOpenAppointmentsModal: boolean;

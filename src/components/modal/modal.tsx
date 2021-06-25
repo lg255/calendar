@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import CalendarContext from './../../context/calendar-context';
+import { CalendarContext } from '../../context/calendar-provider';
 
 const Modal: React.FunctionComponent = (props) => {
   const { modalOptions, setModalOptions } = useContext(CalendarContext);

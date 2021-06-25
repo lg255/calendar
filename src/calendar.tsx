@@ -3,9 +3,9 @@ import './calendar.css';
 import CalendarSelector from './components/calendar-selector/calendar-selector';
 import Day from './components/day/day';
 import moment from 'moment';
-import CalendarContext from './context/calendar-context';
 import Header from './components/header/header';
 import AddAppointment from './components/add-appointment/add-appointment';
+import { CalendarContext } from './context/calendar-provider';
 
 export const NAV_NEXT_MONTH = 'next';
 export const NAV_PREV_MONTH = 'prev';

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import CalendarContext from '../../../context/calendar-context';
 import moment from 'moment';
+import { CalendarContext } from '../../../context/calendar-provider';
 
 const ViewAppointments: React.FunctionComponent<{
   selectedDay: Date;

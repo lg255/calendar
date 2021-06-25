@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from './calendar';
-import CalendarProvider from './context/calendar-provider';
+import { CalendarProvider } from './context/calendar-provider';
 import moment from 'moment';
 import Modal from './components/modal/modal';
+import { UserProvider } from './context/user-provider';
 
 moment.locale('de-AT', {
   weekdays: [
@@ -33,10 +34,12 @@ moment.locale('de-AT', {
 
 ReactDOM.render(
   <React.StrictMode>
-    <CalendarProvider>
-      <Calendar />
-      <Modal />
-    </CalendarProvider>
+    <UserProvider>
+      <CalendarProvider>
+        <Calendar />
+        <Modal />
+      </CalendarProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
